@@ -21,19 +21,100 @@
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Header */
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-    .title-wrap{display:flex;align-items:center;gap:12px}
-    .logo-badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent1),var(--accent2));
-      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;transform:rotate(-6deg);
-      box-shadow:0 6px 20px rgba(124,58,237,0.18), inset 0 -6px 18px rgba(255,255,255,0.12)}
-    h1{margin:0;font-family:"Great Vibes","Poppins",serif;font-size:34px;color:#2b0b4a;text-shadow:0 6px 18px rgba(124,58,237,0.06)}
-    .subtitle{font-size:13px;color:var(--muted);margin-top:4px;font-weight:500}
+    /* HERO / WELCOME BANNER */
+    .hero{
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(255,122,182,0.04));
+      border-radius:14px;
+      padding:18px;
+      margin-bottom:16px;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.04);
+      border: 1px solid rgba(124,58,237,0.06);
+    }
+    .hero-inner{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#7c3aed,#ff7ab6);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:20px;
+      transform:rotate(-6deg);
+      box-shadow:0 8px 24px rgba(124,58,237,0.12);
+    }
+    .hero-text h1{
+      margin:0;
+      font-family:"Great Vibes", "Poppins", serif;
+      font-size:30px;
+      color:#2b0b4a;
+      line-height:1;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .hero-text .lead{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .heart{
+      display:inline-block;
+      transform-origin:center;
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse{
+      0%{ transform: scale(1); }
+      50%{ transform: scale(1.08); }
+      100%{ transform: scale(1); }
+    }
+    /* header cat image */
+    .header-cat{
+      width:40px;
+      height:40px;
+      border-radius:8px;
+      object-fit:cover;
+      box-shadow:0 6px 18px rgba(16,24,40,0.12);
+      border:2px solid rgba(255,255,255,0.6);
+      transform: translateY(-2px);
+      background:#fff;
+    }
+    .header-meta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      color:var(--muted);
+      margin-left:6px;
+    }
+    .cta .btn{
+      background:linear-gradient(90deg,#60a5fa,#a78bfa);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(99,102,241,0.12);
+    }
+    @media (max-width:720px){
+      .hero-inner{align-items:flex-start}
+      .cta{width:100%; margin-top:8px}
+      .cta .btn{width:100%; text-align:center}
+      .hero-text h1{font-size:22px}
+    }
 
-    /* Layout */
+    /* REST OF LAYOUT */
     .grid{display:grid;gap:14px;grid-template-columns:1.1fr 2fr}
     .card{background:var(--card);border-radius:14px;padding:14px;border:1px solid rgba(14,18,30,0.04);box-shadow:0 8px 30px rgba(16,24,40,0.06)}
-
     .label{font-weight:700;font-size:12px;color:var(--muted);margin-bottom:8px}
     .row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
     .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -42,83 +123,69 @@
     button{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;border:none;cursor:pointer;padding:10px 14px;border-radius:10px;transition:transform .12s ease,box-shadow .12s ease;box-shadow:0 8px 20px rgba(124,58,237,0.12)}
     button.secondary{background:#fff;color:#111827;border:1px solid var(--border);box-shadow:none}
     button:active{transform:translateY(1px)}
-
-    /* Table: fixed layout and truncation to avoid overlap */
     table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
     thead th{background:linear-gradient(180deg,#fff,#fbfbff);font-weight:700;padding:10px;border-bottom:1px solid var(--border);color:#374151}
     tbody td{padding:10px;vertical-align:middle;text-align:center}
     tbody tr.debt-row{border-bottom:4px solid var(--row-sep); background:linear-gradient(180deg,#fff,#fff)}
     tbody tr.months-row td{background:linear-gradient(180deg,#fbfbff,#fff);padding-top:8px;padding-bottom:12px}
-
-    /* Prevent overlaps: truncate long text */
     td, th { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     td.title-cell { text-align:left; padding-left:14px; white-space:nowrap; }
     td.small { font-size:13px; color:var(--muted); }
-
-    /* Column widths (fixed) */
     th.col-creditor{width:14%} th.col-account{width:10%} th.col-total{width:10%}
     th.col-min{width:9%} th.col-paid{width:14%} th.col-remain{width:10%}
     th.col-status{width:8%} th.col-term{width:6%} th.col-start{width:8%}
     th.col-progress{width:10%} th.col-months{width:12%} th.col-actions{width:9%}
-
-    /* Amount + progress cell: flexible but constrained */
     .paid-cell { display:flex; align-items:center; gap:10px; justify-content:flex-start; min-width:160px; }
     .paid-amount { min-width:90px; text-align:left; font-weight:700; }
     .paid-bar { flex:1; min-width:80px; }
-
     .months { display:flex; gap:8px; align-items:center; justify-content:flex-start; flex-wrap:wrap; padding:6px 4px; }
     .months label { font-size:12px; color:var(--muted); display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:10px; border:1px solid rgba(14,18,30,0.04); background:#fff; white-space:nowrap; }
     .months input[type="checkbox"] { transform:scale(0.95); margin-right:6px; }
-
     .bar { height:10px; width:100%; background:linear-gradient(180deg,#f3f4f6,#eef2ff); border-radius:999px; overflow:hidden; border:1px solid rgba(14,18,30,0.03); }
     .bar > span { display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--bad),var(--warn),var(--good)); transition:width .18s ease; }
-
     .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
     .s-item{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fcfbff);border:1px solid rgba(14,18,30,0.03);text-align:center}
     .s-item .label{font-size:12px;color:var(--muted);margin-bottom:6px}
     .s-item .big{font-size:16px;font-weight:800}
-
-    /* Modal + confetti */
     #confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none}
     .modal{position:fixed;left:50%;top:18%;transform:translateX(-50%);background:linear-gradient(180deg,#fff,#fbf8ff);border:1px solid rgba(14,18,30,0.06);padding:18px 20px;border-radius:12px;box-shadow:0 12px 40px rgba(2,6,23,0.16);z-index:10000;display:none;text-align:center;min-width:300px}
     .modal h2{margin:0 0 8px;font-size:20px;color:var(--accent1)}
     .modal p{margin:0 0 12px;color:var(--muted)}
     .close-btn{padding:8px 12px;border-radius:10px;border:0;background:linear-gradient(90deg,#60a5fa,#a78bfa);color:#fff;font-weight:700;cursor:pointer}
-
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr}
-      h1{font-size:30px}
-      td, th { white-space: normal; } /* allow wrapping on small screens */
-      .months label { font-size:11px; padding:5px 6px; }
-    }
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} h1{font-size:30px} td, th { white-space: normal; } .months label { font-size:11px; padding:5px 6px; } }
   </style>
 </head>
 <body>
   <canvas id="confetti-canvas"></canvas>
-
   <div id="paidModal" class="modal" role="dialog" aria-modal="true">
     <h2 id="modalTitle">You did it!</h2>
     <p id="modalMsg">Paid off — celebrate this win.</p>
     <button class="close-btn" id="closeModal">Love it</button>
   </div>
 
-  <div class="topbar">
-    <div class="title-wrap">
-      <div class="logo-badge">MT</div>
-      <div>
-        <h1>My Pro Tina's Tracker ❤️</h1>
-        <div class="subtitle">A little aesthetic space to track progress and celebrate wins</div>
+  <!-- HERO / WELCOME BANNER (implemented) -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo">MT</div>
+      <div class="hero-text">
+        <h1>
+          My Pro Tina's Tracker <span class="heart">❤️</span>
+          <!-- External hosted image used here -->
+          <img class="header-cat" src="https://static.vecteezy.com/system/resources/previews/055/277/690/non_2x/cartoon-tabby-cat-face-with-wide-eyes-and-open-mouth-illustration-free-vector.jpg" alt="tabby cat face" />
+          <span class="header-meta">Small wins, big celebrations</span>
+        </h1>
+        <p class="lead">Track progress, celebrate payoff.</p>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#add">Add a debt</a>
       </div>
     </div>
-    <div style="display:flex;gap:10px;align-items:center">
-      <div style="font-size:13px;color:var(--muted)">Made with care</div>
-    </div>
-  </div>
+  </header>
 
   <div class="grid">
     <div class="card">
       <div class="label">Add debt</div>
-      <div class="row">
+      <div class="row" id="add">
         <div><div class="label">Creditor / Lender</div><input id="creditor" /></div>
         <div><div class="label">Account / Loan ID</div><input id="accountId" /></div>
       </div>
@@ -424,13 +491,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function escapeHTML(str){ return String(str ?? '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])); }
 
-  // wire up
   document.getElementById('addBtn').addEventListener('click', addDebt);
   document.getElementById('resetBtn').addEventListener('click', resetAll);
   document.getElementById('exportBtn').addEventListener('click', exportJSON);
   document.getElementById('importBtn').addEventListener('click', ()=>{ const f = document.getElementById('importFile').files[0]; if (!f) return alert('Choose a JSON file to import.'); importJSON(f); });
 
-  // init
   load();
 });
 </script>
